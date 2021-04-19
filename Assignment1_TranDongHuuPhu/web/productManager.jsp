@@ -25,11 +25,12 @@
                         <img src="images/logo1.jpg" width="125px">
                     </div>
                     <nav>
-                        <ul>
-                            <li><a href="admin.jsp">Home</a></li>
-                            <li><a href="createProduct.jsp">Create Product</a></li>
-                            <li><a href="MainController?btnAction=Logout">Logout</a></li>
-                            <li><a href="#"><img src="images/cart.png" width="36px"></a></li>
+                        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                            <li><a href="admin.jsp" class="nav-link px-2 link-dark">Home</a></li>
+                            <li><a href="MainController?btnAction=LoadProductAdmin" class="nav-link px-2 link-dark">Manage Products</a></li>
+                            <li><a href="createProduct.jsp" class="nav-link px-2 link-dark">Create Product</a></li>
+                            <li><a href="MainController?btnAction=Logout" class="nav-link px-2 link-dark">Logout</a></li>
+                            <li><a href="#"><img src="images/cart.png" width="36px" ></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -70,7 +71,7 @@
                                     <th>Price</th>
                                     <th>Description</th>
                                     <th>Quantity</th>
-                                    <th>Image</th>
+                                    <th>Link-Image</th>
                                     <th>Create Date</th>
                                     <th>Update Date</th>
                                     <th>Status</th>
@@ -93,7 +94,7 @@
                                     <td><input type="text" name="txtPrice" min="1" value="${product.price}" required=""></td>
                                     <td><input type="text" name="txtDescription" value="${product.description}"></td>
                                     <td><input type="number" name="txtQuantity" min="1" value="${product.quantity}" required=""></td>
-                                    <td><input type="text" name="txtImage" value="${product.image}"></td>
+                                    <td><input type="url" name="txtImage" value="${product.image}"></td>
                                     <td>${product.createDate}</td>
                                     <td>${product.updateDate}</td>
 

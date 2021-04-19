@@ -64,13 +64,13 @@
         </div>
         <!---------foooter--------->
         <div class="footer">
-            <div class="container">
-                <div class="row">
+            <div class="container1">
+                <div class="row1">
                     <div class="foooter-col-1">
                         <h3>Download Our App</h3>
                     </div>
                     <div class="foooter-col-2">
-                        <img src="images/logo.jpg" width="125px">
+                        <img src="images/logo.jpg" width="125px" >
                     </div>
                     <div class="foooter-col-3">
                         <ul>

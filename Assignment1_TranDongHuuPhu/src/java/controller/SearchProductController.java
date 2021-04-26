@@ -6,7 +6,6 @@
 package controller;
 
 import dao.ProductDAO;
-import dto.CategoryDTO;
 import dto.ProductDTO;
 import java.io.IOException;
 import java.util.List;
@@ -59,8 +58,9 @@ public class SearchProductController extends HttpServlet {
                 request.setAttribute("listProduct", list);
                 request.setAttribute("category", category);
                 request.setAttribute("totalPages", totalPages);
+                request.setAttribute("index", indexPage);
                 url = SUCCESS;
-            }
+            } 
         } catch (Exception e) {
             log.error(e);
         } finally {

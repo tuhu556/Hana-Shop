@@ -9,7 +9,6 @@ import dao.ProductDAO;
 import dto.ProductDTO;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +22,6 @@ import org.apache.log4j.Logger;
 public class SearchController extends HttpServlet {
 
     private static final String SUCCESS = "productManager.jsp";
-    private static final String ERROR = "error.html";
     private final static Logger log = Logger.getLogger(SearchController.class);
 
     /**
@@ -60,8 +58,9 @@ public class SearchController extends HttpServlet {
                 request.setAttribute("LIST", list);
                 request.setAttribute("category", category);
                 request.setAttribute("totalPages", totalPages);
+                request.setAttribute("index", indexPage);
                 url = SUCCESS;
-            }
+            } 
         } catch (Exception e) {
             log.error(e);
         } finally {

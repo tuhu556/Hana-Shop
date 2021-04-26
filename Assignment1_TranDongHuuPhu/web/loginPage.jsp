@@ -14,6 +14,7 @@
         <title>Hana Shop</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="css/login.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     </head>
     <body>
         <div class="header">
@@ -48,8 +49,8 @@
                                         <p class="text-danger" role="alert">
                                             ${requestScope.LOGIN_ERROR}
                                         </p>
-                                        <input type="text" name="txtUserID" placeholder="UserID" required>
-                                        <input type="password" name="txtPassword" placeholder="Password" required>
+                                        <input type="text" name="txtUserID" value="${param.txtUserID}" placeholder="UserID" required>
+                                        <input type="password" name="txtPassword" value="${param.txtPassword}" placeholder="Password" required>
                                         <button type="submit" name="btnAction" value="Login" class="btn">Login</button>
                                         <a href="">Forgot Password</a> <br/>
                                         <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/Assignment1_TranDongHuuPhu/Login-google&response_type=code

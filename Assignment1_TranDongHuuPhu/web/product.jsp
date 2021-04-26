@@ -26,16 +26,22 @@
             <c:set var="categoryMap" value="${sessionScope.CATEGORY_MAP}"/> 
             <center>
                 <form action="MainController">
-                    Search: <input type="text" name="txtSearch" value="${param.search}" class="search"/>
+                    Product's Name: <input type="text" name="txtSearch" value="${param.txtSearch}" class="search"/>
                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="txtCategory">
-                        <option value="All">All</option>
+                        <option value="All" >All</option>
                         <c:forEach var="entry" items="${categoryMap}">
                             <option value="${entry.key}" <c:if test="${requestScope.category eq entry.key}"> selected</c:if>>${entry.value}</option>
                         </c:forEach>
                     </select>
-                    <input type="submit" name="btnAction" value="Search"/>
+                    <input type="submit" name="btnAction" class="btn btn-outline-info" value="Search"/>
                 </form>
             </center>
+            <br>
+            <c:if test="${empty listProduct}" >
+                <div class="alert alert-dark" role="alert">
+                    <center><h4>Nothing here!</h4></center>
+                </div>
+            </c:if>
             <div class="container">
                 <div class="row">
                     <c:forEach items="${listProduct}" var="item">
@@ -64,24 +70,48 @@
                     </c:forEach>
                 </div>
                 <!---------paging-------->
-                <div class="paging">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <c:forEach begin="1" end="${requestScope.totalPages}" var="i">
-                                <c:url var="page" value="SearchProductController">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <c:if test="${requestScope.index > 1}">
+                            <li class="page-item">
+                                <c:url var="previous" value="SearchProductController">
                                     <c:param name="btnAction" value="Search"></c:param>
                                     <c:param name="txtSearch" value="${requestScope.search}"></c:param>
                                     <c:param name="txtCategory" value="${requestScope.category}"></c:param>
-                                    <c:param name="index" value="${i}"></c:param>
+                                    <c:param name="index" value="${requestScope.index-1}"></c:param>
                                 </c:url>
-                                <li class="page-item" ${indexPage==i?"active":""}><a class="page-link" href=${page}>${i}</a></li>
-
+                                <a class="page-link" href="${previous}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only"></span>
+                                </a>
+                            </li>
+                        </c:if>
+                        <c:forEach begin="1" end="${requestScope.totalPages}" var="i">
+                            <c:url var="page" value="SearchProductController">
+                                <c:param name="btnAction" value="Search"></c:param>
+                                <c:param name="txtSearch" value="${requestScope.search}"></c:param>
+                                <c:param name="txtCategory" value="${requestScope.category}"></c:param>
+                                <c:param name="index" value="${i}"></c:param>
+                            </c:url>
+                            <li class="page-item"><a class="page-link" href=${page}>${i}</a></li>
                             </c:forEach>
 
-                        </ul>
-                    </nav>
-                </div>
-
+                        <c:if test="${requestScope.index < requestScope.totalPages}">
+                            <li class="page-item">
+                                <c:url var="next" value="SearchProductController">
+                                    <c:param name="btnAction" value="Search"></c:param>
+                                    <c:param name="txtSearch" value="${requestScope.search}"></c:param>
+                                    <c:param name="txtCategory" value="${requestScope.category}"></c:param>
+                                    <c:param name="index" value="${requestScope.index+1}"></c:param>
+                                </c:url>
+                                <a class="page-link" href="${next}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only"></span>
+                                </a>
+                            </li>
+                        </c:if>
+                    </ul>
+                </nav>
             </div>
         </main>
         <hr>

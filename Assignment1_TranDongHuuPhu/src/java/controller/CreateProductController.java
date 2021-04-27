@@ -21,8 +21,7 @@ import org.apache.log4j.Logger;
  */
 public class CreateProductController extends HttpServlet {
 
-    private static final String SUCCESS = "productManager.jsp";
-    private static final String ERROR = "createProduct.jsp";
+    private static final String SUCCESS = "createProduct.jsp";
     private final static Logger log = Logger.getLogger(CreateProductController.class);
 
     /**
@@ -37,7 +36,7 @@ public class CreateProductController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        String url = SUCCESS;
         boolean check = true;
         try {
             String productID = request.getParameter("txtProductID");
@@ -48,31 +47,38 @@ public class CreateProductController extends HttpServlet {
             String image = request.getParameter("txtImage");
             String description = request.getParameter("txtDescription");
             ProductDAO dao = new ProductDAO();
-            ProductErrorDTO error = new ProductErrorDTO("", "", "", "", "","");
-            if (!dao.checkProductID(productID)){
+            ProductErrorDTO error = new ProductErrorDTO("", "", "", "", "", "");
+            if (!dao.checkProductID(productID)) {
                 check = false;
                 error.setProductIDError("This ID is already exist---Please try another ID");
             }
-            if (quantity <= 0){
+            if (quantity <= 0) {
                 check = false;
                 error.setQuantityError("Quantity cannot equal or less than 0");
             }
-            if (price <= 0){
+            try {
+                float priceCheck = Float.parseFloat(request.getParameter("txtPrice"));
+
+            } catch (NumberFormatException ex) {
+                check = false;
+                error.setPriceError("Price must be number");
+            }
+            if (price <= 0) {
                 check = false;
                 error.setPriceError("Price cannot equal or less than 0");
             }
-            if (image.length() > 500){
+            if (image.length() > 500) {
                 check = false;
                 error.setImageError("Max length is 500");
             }
-            if (description.length() > 300){
+            if (description.length() > 300) {
                 check = false;
                 error.setDescriptionError("Max length is 300");
             }
             if (check) {
                 ProductDTO dto = new ProductDTO(productID, productName, quantity, price, description, categoryID, image, true);
                 dao.createProduct(dto);
-                url = SUCCESS;
+                request.setAttribute("SUCCESS", "Product created!");
             } else {
                 request.setAttribute("ERROR", error);
             }

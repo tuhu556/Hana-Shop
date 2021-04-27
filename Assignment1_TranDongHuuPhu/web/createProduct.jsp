@@ -15,20 +15,25 @@
     <body>
         <c:set var="categoryMap" value="${sessionScope.CATEGORY_MAP}"/> 
         <c:set var="error" value="${requestScope.ERROR}"></c:set>
+        <c:if test="${requestScope.SUCCESS != null}">
+            <script>
+                window.window.alert("${requestScope.SUCCESS}");
+            </script>
+        </c:if>
             <form action="MainController" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" method="POST">
                 <h2 class="w3-center">Create new Product</h2>
 
                 <div class="w3-row w3-section">
                     <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-hotel"></i></div>
                     <div class="w3-rest">
-                        <input class="w3-input w3-border" type="text" name="txtProductID" value="${param.productID}" placeholder="Product ID" required/>${error.productIDError}
+                        <input class="w3-input w3-border" type="text" name="txtProductID" value="${param.txtProductID}" placeholder="Product ID" required/>${error.productIDError}
                 </div>
             </div>
 
             <div class="w3-row w3-section">
                 <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-hotel"></i></div>
                 <div class="w3-rest">
-                    <input class="w3-input w3-border" type="text" name="txtProductName" value="${param.productName}" placeholder="Product Name" required/>
+                    <input class="w3-input w3-border" type="text" name="txtProductName" value="${param.txtProductName}" placeholder="Product Name" required/>
                 </div>
             </div>
             <div class="w3-row w3-section">
@@ -48,33 +53,34 @@
             <div class="w3-row w3-section">
                 <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-tags"></i></div>
                 <div class="w3-rest">
-                    <input class="w3-input w3-border" type="text" name="txtPrice" value="${param.price}" placeholder="Price" required/>${error.priceError}
+                    <input class="w3-input w3-border" type="text" name="txtPrice" value="${param.txtPrice}" placeholder="Price" required/>${error.priceError}
                 </div>
             </div>
 
             <div class="w3-row w3-section">
                 <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-audio-description"></i></div>
                 <div class="w3-rest">
-                    <input class="w3-input w3-border" type="text" name="txtDescription" value="${param.description}" placeholder="Drescription"/>${error.descriptionError}
+                    <input class="w3-input w3-border" type="text" name="txtDescription" value="${param.txtDescription}" placeholder="Drescription" maxlength="300"/>${error.descriptionError}
                 </div>
             </div>
 
             <div class="w3-row w3-section">
                 <div class="w3-col" style="width:50px"><i class="w3-xxlarge fas fa-sort-amount-up-alt"></i></div>
                 <div class="w3-rest">
-                    <input class="w3-input w3-border" type="number" name="txtQuantity" value="${param.quantity}" min ="1" placeholder="Quantity" required/>${error.quantityError}
+                    <input class="w3-input w3-border" type="number" name="txtQuantity" value="${param.txtQuantity}" min ="1" placeholder="Quantity" required/>${error.quantityError}
                 </div>
             </div>
 
             <div class="w3-row w3-section">
                 <div class="w3-col" style="width:50px"><i class="w3-xxlarge fas fa-images"></i></div>
                 <div class="w3-rest">
-                    <input class="w3-input w3-border" type="text" name="txtImage" value="${param.image}" placeholder="Link Image" required/>${error.imageError}
+                    <input class="w3-input w3-border" type="text" name="txtImage" value="${param.txtImage}" placeholder="Link Image" maxlength="500" required/>${error.imageError}
                 </div>
             </div>
 
             <p class="w3-center">
                 <input type="submit" name="btnAction" value="Create" class="w3-button w3-section w3-blue w3-ripple"/>
+                <input class="w3-button w3-section w3-blue w3-ripple" type="reset" value="Reset"/>
                 <a href="admin.jsp" class="w3-button w3-section w3-blue w3-ripple">Back</a>
             </p>
         </form>

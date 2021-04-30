@@ -60,7 +60,7 @@
             <div class="w3-row w3-section">
                 <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-audio-description"></i></div>
                 <div class="w3-rest">
-                    <input class="w3-input w3-border" type="text" name="txtDescription" value="${param.txtDescription}" placeholder="Drescription" maxlength="300"/>${error.descriptionError}
+                    <textarea class="w3-input w3-border" name="txtDescription" value="${param.txtDescription}" placeholder="Drescription" maxlength="300"></textarea>
                 </div>
             </div>
 
